@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Cryptosphere/static/css/main.67f2b070.chunk.css",
-    "main.js": "/Cryptosphere/static/js/main.6a7aa32d.chunk.js",
-    "main.js.map": "/Cryptosphere/static/js/main.6a7aa32d.chunk.js.map",
+    "main.css": "/Cryptosphere/static/css/main.6591d386.chunk.css",
+    "main.js": "/Cryptosphere/static/js/main.e96ecc36.chunk.js",
+    "main.js.map": "/Cryptosphere/static/js/main.e96ecc36.chunk.js.map",
     "runtime-main.js": "/Cryptosphere/static/js/runtime-main.6d1520a3.js",
     "runtime-main.js.map": "/Cryptosphere/static/js/runtime-main.6d1520a3.js.map",
     "static/css/2.db13360c.chunk.css": "/Cryptosphere/static/css/2.db13360c.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.150f87fc.chunk.js.map": "/Cryptosphere/static/js/2.150f87fc.chunk.js.map",
     "index.html": "/Cryptosphere/index.html",
     "static/css/2.db13360c.chunk.css.map": "/Cryptosphere/static/css/2.db13360c.chunk.css.map",
-    "static/css/main.67f2b070.chunk.css.map": "/Cryptosphere/static/css/main.67f2b070.chunk.css.map",
+    "static/css/main.6591d386.chunk.css.map": "/Cryptosphere/static/css/main.6591d386.chunk.css.map",
     "static/js/2.150f87fc.chunk.js.LICENSE.txt": "/Cryptosphere/static/js/2.150f87fc.chunk.js.LICENSE.txt",
     "static/media/cryptocurrency.1548aced.png": "/Cryptosphere/static/media/cryptocurrency.1548aced.png"
   },
@@ -18,7 +18,7 @@
     "static/js/runtime-main.6d1520a3.js",
     "static/css/2.db13360c.chunk.css",
     "static/js/2.150f87fc.chunk.js",
-    "static/css/main.67f2b070.chunk.css",
-    "static/js/main.6a7aa32d.chunk.js"
+    "static/css/main.6591d386.chunk.css",
+    "static/js/main.e96ecc36.chunk.js"
   ]
 }
