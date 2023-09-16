@@ -19,7 +19,7 @@ const News = ({ simplified }) => {
   });
   const [news, setNews] = useState([]);
 
-  if (isFetching) return Loader;
+  if (isFetching) return <Loader/>;
   return (
     <>
       <Row gutter={[24, 24]}>

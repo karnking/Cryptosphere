@@ -32,7 +32,7 @@ const NavBar = () => {
       <div className="logo-container">
         <Avatar src={icon} size="large" />
         <Typography.Title level={2} className="logo">
-          <Link to="/cryptosphere.github.io">Cryptosphere</Link>
+          <Link to="/Cryptosphere">Cryptosphere</Link>
         </Typography.Title>
         <Button
           className="menu-control-container"
@@ -44,16 +44,16 @@ const NavBar = () => {
       {activeMenu && (
         <Menu theme="dark">
           <Menu.Item icon={<HomeOutlined />}>
-            <Link to="/cryptosphere.github.io">Home</Link>
+            <Link to="/Cryptosphere">Home</Link>
           </Menu.Item>
           <Menu.Item icon={<FundOutlined />}>
-            <Link to="/cryptosphere.github.io/cryptocurrencies">Cryptocurrencies</Link>
+            <Link to="/Cryptosphere/cryptocurrencies">Cryptocurrencies</Link>
           </Menu.Item>
           <Menu.Item icon={<MoneyCollectOutlined />}>
-            <Link to="/cryptosphere.github.io/exchanges">Exchanges</Link>
+            <Link to="/Cryptosphere/exchanges">Exchanges</Link>
           </Menu.Item>
           <Menu.Item icon={<BulbOutlined />}>
-            <Link to="/cryptosphere.github.io/news">News</Link>
+            <Link to="/Cryptosphere/news">News</Link>
           </Menu.Item>
         </Menu>
       )}
