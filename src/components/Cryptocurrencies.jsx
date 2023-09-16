@@ -29,7 +29,7 @@ const Cryptocurrencies = ({ simplified }) => {
         </div>
       )}
       <Row gutter={[32, 32]} className="crypto-card-container">
-        {cryptos?.map((currency) => (
+      {cryptos?.length == 0 ? <Card className="noresult">No results to show at the moment</Card> : cryptos?.map((currency) => (
           <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.uuid}>
             <Link to={`/Cryptosphere/crypto/${currency.uuid}`}>
               <Card
