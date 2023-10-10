@@ -9,7 +9,7 @@ const Home = () => {
       <Typography.Title className='tite'>
         Explore the world of Crypto
       </Typography.Title>
-      <Image height={'100vh'} width={'100vw'} style={{zIndex:'-1',position:'fixed', top:'0', left: '0'}} src={icon} />
+      <img style={{overflow:'hidden',zIndex:'-1',position:'fixed', top:'0', left: '0', height:'100vh', width: '100vw'}} src={icon} />
     </div>
   )
 }

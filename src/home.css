@@ -14,9 +14,9 @@
     border: 0 !important;
     position: fixed !important;
     top: 50vh;
-    left: 45vw;
+    left: 47vw;
     cursor: pointer;
-    font-size: 6rem !important;
+    font-size: 5rem !important;
 }
 
 @media screen and (max-width:800px) {
