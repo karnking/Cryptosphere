@@ -1,0 +1,28 @@
+.tite {
+    font-size: 5vw !important;
+    position: fixed;
+    top: 40%;
+    left: 20%;
+    z-index: 20;
+    color: white !important
+}
+
+.but {
+    z-index: 20;
+    background: rgb(0,0,0,0) !important;
+    color: white !important;
+    border: 0 !important;
+    position: fixed !important;
+    top: 50vh;
+    left: 45vw;
+    cursor: pointer;
+    font-size: 6rem !important;
+}
+
+@media screen and (max-width:800px) {
+    .but {
+        top: 45vh;
+        left: 40vw;
+        font-size: 3rem !important;
+    }
+}

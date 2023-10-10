@@ -12,7 +12,7 @@ import icon from "../images/cryptocurrency.png";
 const NavBar = () => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [screenSize, setScreenSize] = useState(null);
-
+  const [clicked,setClicked] = useState(0)
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -26,7 +26,7 @@ const NavBar = () => {
     } else {
       setActiveMenu(true);
     }
-  }, [screenSize]);
+  }, [screenSize,clicked]);
   return (
     <div className="nav-container">
       <div className="logo-container">
@@ -44,16 +44,16 @@ const NavBar = () => {
       {activeMenu && (
         <Menu theme="dark">
           <Menu.Item icon={<HomeOutlined />}>
-            <Link to="/Cryptosphere">Home</Link>
+            <Link onClick={()=> setClicked((last)=>last+1)} to="/Cryptosphere">Home</Link>
           </Menu.Item>
           <Menu.Item icon={<FundOutlined />}>
-            <Link to="/Cryptosphere/cryptocurrencies">Cryptocurrencies</Link>
+            <Link onClick={()=> setClicked((last)=>last+1)} to="/Cryptosphere/cryptocurrencies">Cryptocurrencies</Link>
           </Menu.Item>
           <Menu.Item icon={<MoneyCollectOutlined />}>
-            <Link to="/Cryptosphere/exchanges">Exchanges</Link>
+            <Link onClick={()=> setClicked((last)=>last+1)} to="/Cryptosphere/exchanges">Exchanges</Link>
           </Menu.Item>
           <Menu.Item icon={<BulbOutlined />}>
-            <Link to="/Cryptosphere/news">News</Link>
+            <Link onClick={()=> setClicked((last)=>last+1)} to="/Cryptosphere/news">News</Link>
           </Menu.Item>
         </Menu>
       )}

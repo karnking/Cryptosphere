@@ -11,10 +11,8 @@ const { Panel } = Collapse;
 
 const Exchanges = () => {
   const { data: cryptoExchanges, isFetching } = useGetExchangesQuery();
-  console.log(isFetching)
   if (isFetching) return <Loader />;
   const exchangesList = cryptoExchanges;
-  console.log(exchangesList)
   return (
     <>
       <Row>

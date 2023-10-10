@@ -51,7 +51,7 @@ const Homepage = () => {
           Top 10 Cryptocurrencies in the world
         </Title>
         <Title level={3} className="show-more">
-          <Link to="/cryptocurrencies">Show More</Link>
+          <Link to="/Cryptosphere/cryptocurrencies">Show More</Link>
         </Title>
       </div>
       <Cryptocurrencies simplified />
@@ -60,7 +60,7 @@ const Homepage = () => {
           Latest Crypto News
         </Title>
         <Title level={3} className="show-more">
-          <Link to="/news">Show More</Link>
+          <Link to="/Cryptosphere/news">Show More</Link>
         </Title>
       </div>
       <News simplified />
