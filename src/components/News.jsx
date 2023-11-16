@@ -6,9 +6,13 @@ import { useGetCryptosQuery } from "../services/cryptoApi";
 import Loader from "./Loader";
 
 const { Text, Title } = Typography;
-const { Option } = Select;
-const demoImage =
-  "http://coinrevolution.com/wp-content/uploads/2020/06/cryptonews.jpg";
+const Option = Select.Option;
+const demoImage =[
+  "http://coinrevolution.com/wp-content/uploads/2020/06/cryptonews.jpg",
+  "https://imgs.search.brave.com/UwuJTMB_X3E4_0GRHG02qAzlkVyogpnYmjW8hYd3C9k/rs:fit:32:32:1/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYzY2NThiMjBm/NmRhODhlYjJkYjlk/NGVkY2NhN2Q3ODYx/NmUxN2U5N2U0NTZi/N2U0Y2FjN2QwOTlh/ZDg5MTU1NC93d3cu/dGhldmVyZ2UuY29t/Lw",
+  "https://imgs.search.brave.com/NWklMc22QbQqpaCADzb-RIV2_jo3-J_CjcdCRnwcNZw/rs:fit:560:320:1/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi80LzQxL0JC/Q19Mb2dvXzIwMjEu/c3ZnLzUxMnB4LUJC/Q19Mb2dvXzIwMjEu/c3ZnLnBuZw",
+  "https://imgs.search.brave.com/NWklMc22QbQqpaCADzb-RIV2_jo3-J_CjcdCRnwcNZw/rs:fit:560:320:1/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi80LzQxL0JC/Q19Mb2dvXzIwMjEu/c3ZnLzUxMnB4LUJC/Q19Mb2dvXzIwMjEu/c3ZnLnBuZw"
+]
 const News = ({ simplified }) => {
   const [newsCategory, setNewsCategory] = useState("Cryptocurrency");
   const count = simplified ? 6 : 12;
@@ -18,7 +22,6 @@ const News = ({ simplified }) => {
     count,
   });
   const [news, setNews] = useState([]);
-
   if (isFetching) return <Loader/>;
   return (
     <>
@@ -42,40 +45,39 @@ const News = ({ simplified }) => {
             </Select>
           </Col>
         )}
-        {cryptoNews.value.map((news, i) => (
+        {cryptoNews?.articles.map((neews, i) => (
           <Col xs={24} sm={12} lg={8} key={i}>
             <Card hoverable className="news-card">
-              <a href={news.url} target="_blank" rel="noreferrer">
+              <a href={neews?.url} target="_blank" rel="noreferrer">
                 <div className="news-image-container">
                   <Title className="news-title" level={4}>
-                    {news.name}
+                    {neews?.title}
                   </Title>
                   <img
-                    src={news?.image?.thumbnail?.contentUrl || demoImage}
+                    src={neews?.urlToImage || demoImage}
                     alt="news"
                     style={{ maxWidth: "200px", maxHeight: "100px" }}
                   />
                 </div>
                 <p>
-                  {news.description > 100
-                    ? `${news.description.substring(0, 100)}...`
-                    : news.description}
+                  {neews?.description > 100
+                    ? `${neews?.description.substring(0, 100)}...`
+                    : neews?.description}
                 </p>
                 <div className="provider-container">
                   <div>
                     <Avatar
                       src={
-                        news.provider[0]?.image?.thumbnail?.contentUrl ||
-                        demoImage
+                        demoImage[i%4]
                       }
                       alt="news"
                     />
                     <Text className="provider-name">
-                      {news.provider[0]?.name}
+                      {neews?.source?.name}
                     </Text>
                   </div>
                   <Text>
-                    {moment(news.datePublished).startOf("ss").fromNow()}
+                    {moment(neews?.publishedAt).startOf("ss").fromNow()}
                   </Text>
                 </div>
               </a>

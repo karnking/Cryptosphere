@@ -24,7 +24,7 @@ const AllRoutes = () => {
         <Layout>
           <div className="routes">
             <Routes>
-              <Route path="/Cryptosphere">
+              <Route path="/Cryptosphere/">
                 <Homepage />
               </Route>
               <Route path="/Cryptosphere/exchanges">
