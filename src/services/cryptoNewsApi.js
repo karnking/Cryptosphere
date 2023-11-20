@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const cryptoNewsApiHeaders = {
-  "X-API-key": "3ef6398d4c964f5ea8b457535c46a046",
+  "X-API-Key": "3ef6398d4c964f5ea8b457535c46a046",
 };
 
 const baseUrl = "https://newsapi.org/v2/everything";
