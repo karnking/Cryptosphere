@@ -6,8 +6,7 @@ const cryptoNewsApiHeaders = {
 const baseUrl = "https://newsapi.org/v2/everything";
 
 const createRequest = (url) => ({
-  url,
-  headers: cryptoNewsApiHeaders,
+  url
 });
 
 export const cryptoNewsApi = createApi({
@@ -17,7 +16,7 @@ export const cryptoNewsApi = createApi({
     getCryptoNews: builder.query({
       query: ({ newsCategory, count }) =>
         createRequest(
-          `?q=${newsCategory}&page=1&pageSize=${count}`
+          `?q=${newsCategory}&page=1&pageSize=${count}&api_key=3ef6398d4c964f5ea8b457535c46a046`
         ),
     }),
   }),
