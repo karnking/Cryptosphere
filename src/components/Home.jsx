@@ -2,7 +2,6 @@ import { Button, Image, Typography } from 'antd'
 import React from 'react'
 import "../home.css"
 import icon from "../images/1_HTC1oMKYwC7a8vUBsiplhw.gif"
-import { UpCircleOutlined } from '@ant-design/icons'
 const Home = () => {
   return (
     <div>

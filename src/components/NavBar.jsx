@@ -7,6 +7,7 @@ import {
   BulbOutlined,
   FundOutlined,
   MenuOutlined,
+  WalletOutlined 
 } from "@ant-design/icons";
 import icon from "../images/cryptocurrency.png";
 const NavBar = () => {
@@ -51,6 +52,9 @@ const NavBar = () => {
           </Menu.Item>
           <Menu.Item icon={<MoneyCollectOutlined />}>
             <Link onClick={()=> setClicked((last)=>last+1)} to="/Cryptosphere/exchanges">Exchanges</Link>
+          </Menu.Item>
+          <Menu.Item icon={<WalletOutlined />}>
+            <Link onClick={()=> setClicked((last)=>last+1)} to="/Cryptosphere/wallet">Wallet</Link>
           </Menu.Item>
           <Menu.Item icon={<BulbOutlined />}>
             <Link onClick={()=> setClicked((last)=>last+1)} to="/Cryptosphere/news">News</Link>

@@ -31,15 +31,18 @@ a:hover {
   flex: 0.8;
   width: 100%;
 }
+
 .routes {
   padding: 20px;
   min-height: 90vh;
 }
+
 .noresult {
   width: 100%;
   text-align: center;
   font-weight: bold;
 }
+
 .nav-container {
   position: fixed;
   left: 0;
@@ -56,12 +59,15 @@ a:hover {
   align-items: center;
   width: 100%;
 }
+
 .logo {
   margin: 0 0 0 15px;
 }
+
 .logo a {
   color: white;
 }
+
 .menu-control-container {
   display: none !important;
   position: absolute !important;
@@ -130,9 +136,11 @@ a:hover {
     position: absolute;
     right: 0px;
   }
+
   .home-title {
     font-size: 1.4rem !important;
   }
+
   .show-more {
     font-size: 1.3rem !important;
   }
@@ -270,9 +278,11 @@ a:hover {
   .stats-container {
     flex-direction: column;
   }
+
   .coin-desc-link {
     flex-direction: column;
   }
+
   .stats-container h2 {
     margin-top: 0px;
   }
@@ -282,10 +292,12 @@ a:hover {
   .coin-links {
     padding: 0px;
   }
+
   .coin-detail-container {
     margin: 0;
   }
 }
+
 @media screen and (max-width: 500px) {
   .heading {
     margin-top: 20px;
@@ -295,13 +307,16 @@ a:hover {
 .select-news {
   width: 180px;
 }
+
 .news-card {
   min-height: 300px !important;
 }
+
 .news-image-container {
   display: flex !important;
   justify-content: space-between !important;
 }
+
 .news-title {
   width: 70%;
 }
@@ -310,14 +325,17 @@ a:hover {
   width: 100px;
   height: 100px;
 }
+
 .news-card p {
   color: black;
   margin: 10px 0px !important;
 }
+
 .provider-container {
   display: flex;
   justify-content: space-between;
 }
+
 .provider-name {
   margin-left: 10px;
 }
@@ -328,47 +346,59 @@ a:hover {
   gap: 50px;
   color: #0071bd;
 }
+
 .chart-title {
   color: #0071bd !important;
 }
+
 .price-container {
   display: flex !important;
   gap: 20px !important;
   align-items: center !important;
   flex-wrap: wrap !important;
 }
+
 .price-change {
   font-weight: 900 !important;
 }
+
 .current-price {
   margin-top: 0px !important;
   font-weight: 900 !important;
 }
+
 .home-heading-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 40px;
 }
+
 .show-more {
   margin-top: 0px !important;
 }
+
 .exchange-image {
   margin: 0px 10px !important;
 }
+
 .search-crypto {
   margin: 20px auto 30px auto;
   width: 250px;
 }
+
 .crypto-card-container {
   min-height: 65vh !important;
 }
+
 .crypto-card {
   min-width: 250px;
 }
+
 .crypto-card .crypto-image {
   width: 35px;
 }
+
 .select-timeperiod {
   width: 200px !important;
   margin-top: 20px !important;

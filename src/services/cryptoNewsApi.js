@@ -1,25 +1,39 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const cryptoNewsApiHeaders = {
-  "X-API-Key": "3ef6398d4c964f5ea8b457535c46a046",
-};
+import {
+  createApi,
+  fetchBaseQuery
+} from "@reduxjs/toolkit/query/react";
 
-const baseUrl = "https://newsapi.org/v2/everything";
+const baseUrl = "http://api.mediastack.com/v1/news";
 
 const createRequest = (url) => ({
-  url
+  url,
 });
 
 export const cryptoNewsApi = createApi({
   reducerPath: "cryptoNewsApi",
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery: fetchBaseQuery({
+    baseUrl
+  }),
   endpoints: (builder) => ({
     getCryptoNews: builder.query({
-      query: ({ newsCategory, count }) =>
-        createRequest(
-          `?q=${newsCategory}&page=1&pageSize=${count}&api_key=3ef6398d4c964f5ea8b457535c46a046`
-        ),
+      query: ({
+        newsCategory,
+        count=20
+      }) => {
+        if (newsCategory) {
+          return createRequest(
+            `?access_key=c30216ad085bd8098471ca4d3d6ddb74&keywords=${newsCategory}&languages=en&limit=${count}`
+          )
+        } else {
+          return createRequest(
+            `?access_key=c30216ad085bd8098471ca4d3d6ddb74&keywords=cryptocurrency&languages=en&limit=${count}`
+          )
+        }
+      }
     }),
   }),
 });
 
-export const { useGetCryptoNewsQuery } = cryptoNewsApi;
+export const {
+  useGetCryptoNewsQuery
+} = cryptoNewsApi;

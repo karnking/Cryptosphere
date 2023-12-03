@@ -25,8 +25,7 @@ ChartJS.register(
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   const coinPrice = [];
   const coinTimestamp = [];
-  console.log(coinHistory)
-  for (let i = coinHistory?.data?.history?.length - 1; i >=0 ; i -= 1) {
+  for (let i = coinHistory?.data?.history?.length - 1; i >=0 ; i -= 10) {
     coinPrice.push(coinHistory?.data?.history[i].price);
     coinTimestamp.push(
       new Date(coinHistory?.data?.history[i].timestamp*1000).toLocaleDateString("en-UK")

@@ -1,8 +1,7 @@
 import React from "react";
 import millify from "millify";
-import { Collapse, Row, Col, Typography, Avatar } from "antd";
-import HTMLReactParser from "html-react-parser";
-
+import { Button, Collapse, Row, Col, Typography, Avatar } from "antd";
+import { ShoppingCartOutlined } from "@ant-design/icons"
 import { useGetExchangesQuery } from "../services/exchangesApi";
 import Loader from "./Loader";
 
@@ -15,11 +14,12 @@ const Exchanges = () => {
   const exchangesList = cryptoExchanges;
   return (
     <>
-      <Row>
+      <Row style={{ fontWeight: "bold", fontSize: "1.1rem" }}>
         <Col span={6}>Exchanges</Col>
         <Col span={6}>Year Established</Col>
-        <Col span={6}>24h Trade Volume</Col>
-        <Col span={6}>Trust Score</Col>
+        <Col span={4}>24h Trade Volume</Col>
+        <Col span={4}>Trust Score</Col>
+        <Col span={4} style={{ paddingLeft: "1.5rem" }}>Buy</Col>
       </Row>
       <Row>
         {exchangesList.map((exchange) => (
@@ -42,9 +42,14 @@ const Exchanges = () => {
                         <strong>{exchange.name}</strong>
                       </Text>
                     </Col>
-                    <Col span={7}>{exchange.year_established}</Col>
-                    <Col span={6}>{millify(exchange.trade_volume_24h_btc)}</Col>
-                    <Col span={5}>{exchange.trust_score}</Col>
+                    <Col span={7}>{exchange.year_established || 'Not Shared'}</Col>
+                    <Col span={4}>{millify(exchange.trade_volume_24h_btc)}</Col>
+                    <Col span={3}>{exchange.trust_score}</Col>
+                    <Col span={4} >
+                      <Button href={exchange?.url} type="primary" style={{ backgroundColor: "#001529" }} shape="round" icon={<ShoppingCartOutlined />} size={'large'}>
+                        Checkout
+                      </Button>
+                    </Col>
                   </Row>
                 }
               >

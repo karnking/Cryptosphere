@@ -1,5 +1,5 @@
 import React from "react";
-import {  Route, Link, Routes } from "react-router-dom";
+import { Route, Link, Routes } from "react-router-dom";
 
 import { Layout, Typography, Space } from "antd";
 import "../App.css";
@@ -7,12 +7,12 @@ import {
   NavBar,
   Exchanges,
   Homepage,
-  Example,
   Cryptocurrencies,
   News,
   CryptoDetails,
+  CryptoWallet
 } from "./";
-import Home from "./Home";
+import PrivateRoute from "./PrivateRoute";
 
 const AllRoutes = () => {
   return (
@@ -35,6 +35,16 @@ const AllRoutes = () => {
               </Route>
               <Route path="/Cryptosphere/crypto/:coinId">
                 <CryptoDetails />
+              </Route>
+              <Route path="/Cryptosphere/wallet">
+                <PrivateRoute>
+                  <CryptoWallet />
+                </PrivateRoute>
+              </Route>
+              <Route path="/Cryptosphere/wallet/:coinId">
+                <PrivateRoute>
+                  <CryptoWallet />
+                </PrivateRoute>
               </Route>
               <Route path="/Cryptosphere/news">
                 <News />
