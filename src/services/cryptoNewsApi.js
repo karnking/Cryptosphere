@@ -7,6 +7,7 @@ const baseUrl = "http://api.mediastack.com/v1/news";
 
 const createRequest = (url) => ({
   url,
+  
 });
 
 export const cryptoNewsApi = createApi({
@@ -14,6 +15,7 @@ export const cryptoNewsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl
   }),
+
   endpoints: (builder) => ({
     getCryptoNews: builder.query({
       query: ({

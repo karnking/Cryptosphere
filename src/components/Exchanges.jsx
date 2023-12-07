@@ -22,7 +22,7 @@ const Exchanges = () => {
         <Col span={4} style={{ paddingLeft: "1.5rem" }}>Buy</Col>
       </Row>
       <Row>
-        {exchangesList.map((exchange) => (
+        {exchangesList?.map((exchange) => (
           <Col span={24}>
             <Collapse accordion>
               <Panel
@@ -47,7 +47,7 @@ const Exchanges = () => {
                     <Col span={3}>{exchange.trust_score}</Col>
                     <Col span={4} >
                       <Button href={exchange?.url} type="primary" style={{ backgroundColor: "#001529" }} shape="round" icon={<ShoppingCartOutlined />} size={'large'}>
-                        Checkout
+                        Buy
                       </Button>
                     </Col>
                   </Row>
