@@ -1,0 +1,7 @@
+export const LOGIN_USER = "LOGIN_USER"
+export const LOGOUT_USER = "LOGOUT_USER"
+export const EDIT_USER = "EDIT_USER"
+export const IS_ERROR = "IS_ERROR"
+export const IS_LOADING = "IS_LOADING"
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS"
+export const LOGGED_IN = "LOGGED_IN"

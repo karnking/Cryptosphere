@@ -3,7 +3,7 @@ import {
   fetchBaseQuery
 } from "@reduxjs/toolkit/query/react";
 
-const baseUrl = "http://api.mediastack.com/v1/news";
+const baseUrl = "https://nice-tan-butterfly-sari.cyclic.app/news";
 
 const createRequest = (url) => ({
   url,
@@ -24,11 +24,11 @@ export const cryptoNewsApi = createApi({
       }) => {
         if (newsCategory) {
           return createRequest(
-            `?access_key=c30216ad085bd8098471ca4d3d6ddb74&keywords=${newsCategory}&languages=en&limit=${count}`
+            `?topic=${newsCategory}&count=${count}`
           )
         } else {
           return createRequest(
-            `?access_key=c30216ad085bd8098471ca4d3d6ddb74&keywords=cryptocurrency&languages=en&limit=${count}`
+            `?access_key=c30216ad085bd8098471ca4d3d6ddb74&keywords=cryptocurrency&languages=en&count=${count}`
           )
         }
       }

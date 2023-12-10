@@ -7,9 +7,10 @@
     color: white !important
 }
 
+
 .but {
     z-index: 20;
-    background: rgb(0,0,0,0) !important;
+    background: rgb(0, 0, 0, 0) !important;
     color: white !important;
     border: 0 !important;
     position: fixed !important;
