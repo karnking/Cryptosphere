@@ -23,6 +23,7 @@ const PrivateRoute = ({ children }) => {
     const [form] = Form.useForm();
     const status = useSelector(state => state.user.status)
     useEffect(() => {
+        form.resetFields();
         let id
         if (status === 1) {
             clearTimeout(id)

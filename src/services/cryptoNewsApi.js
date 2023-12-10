@@ -20,11 +20,11 @@ export const cryptoNewsApi = createApi({
     getCryptoNews: builder.query({
       query: ({
         newsCategory,
-        count=20
+        count
       }) => {
         if (newsCategory) {
           return createRequest(
-            `?topic=${newsCategory}&count=${count}`
+            `?topic=${newsCategory}&count=${count?count:12}`
           )
         } else {
           return createRequest(

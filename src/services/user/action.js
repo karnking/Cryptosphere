@@ -23,7 +23,7 @@ export const loginUser = (user) => async (dispatch) => {
         return;
     }
     try {
-        const curr_user = await axios.post('http://localhost:8080/user/login', user)
+        const curr_user = await axios.post('https://nice-tan-butterfly-sari.cyclic.app/user/login', user)
         if (curr_user.status == 200) dispatch({
             type: LOGIN_USER,
             payload: curr_user.data
@@ -31,14 +31,14 @@ export const loginUser = (user) => async (dispatch) => {
         else {
             dispatch({
                 type: IS_ERROR,
-                payload:curr_user.response.data
+                payload:curr_user?.response?.data
             })
         }
     } catch (error) {
         console.log(error)
         dispatch({
             type: IS_ERROR,
-            payload:error.response.data
+            payload:error?.response?.data
         })
     }
 }
@@ -66,10 +66,10 @@ export const signupUser = (user) => async (dispatch) => {
         return;
     }
     try {
-        const curr_user = await axios.post('http://localhost:8080/user/signup', user)
+        const curr_user = await axios.post('https://nice-tan-butterfly-sari.cyclic.app/user/signup', user)
         if (curr_user.status !== 200) dispatch({
             type: IS_ERROR,
-            payload:curr_user.response.data
+            payload:curr_user?.response?.data
         })
         else{
             dispatch({type:SIGNUP_SUCCESS})
@@ -78,17 +78,17 @@ export const signupUser = (user) => async (dispatch) => {
         console.log(error)
         dispatch({
             type: IS_ERROR,
-            payload:error.response.data
+            payload:error?.response?.data
         })
     }
 }
 export const editUser = (user) => async (dispatch) => {
     dispatch({type:IS_LOADING})
     try {
-        const curr_user = await axios.post('http://localhost:8080/user/login', user)
+        const curr_user = await axios.post('https://nice-tan-butterfly-sari.cyclic.app/user/login', user)
         if (curr_user.status == 200) dispatch({
             type: LOGIN_USER,
-            payload: curr_user.data
+            payload: curr_user?.data
         })
         else dispatch({
             type: IS_ERROR
