@@ -68,6 +68,8 @@ const PrivateRoute = ({ children }) => {
     }
 
     const navigate = useNavigate()
+    const state = useSelector(state=>state.user)
+    console.log(state)
     if (!loggedIn) return <Modal
         title={logging ? "Login" : "Signup"}
         open={!loggedIn}
@@ -124,8 +126,8 @@ const PrivateRoute = ({ children }) => {
             </Form.Item>
         </Form>
 
-        {alertShow && <Alert message={error ? error : "Error"} type="error" showIcon />}
-        {status==1 || status==2 && <Alert message={status === 1 ? "Login Successfull" : "Signup Successfull"} type="success" showIcon />}
+        {status!=1 && status!=2 && alertShow && <Alert message={error ? error : "Error"} type="error" showIcon />}
+        {status!=0 && <Alert message={status === 1 ? "Login Successfull!" : "Signup Successfull!"} type="success" showIcon />}
     </Modal>
     return children
 }
