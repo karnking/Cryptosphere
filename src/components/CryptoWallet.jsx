@@ -8,6 +8,7 @@ import {
   MinusSquareFilled
 } from "@ant-design/icons";
 import {
+  getCdetail,
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
@@ -18,6 +19,7 @@ import { options } from "./razorPayintegration";
 import { EDIT_USER, LOGOUT_USER } from "../services/user/actionType";
 import { editUser } from "../services/user/action";
 import axios from "axios";
+import { render } from "@testing-library/react";
 
 const { Title, Text, Card, Space } = Typography;
 
@@ -25,27 +27,32 @@ const columns = [
   {
     title: 'Crypto',
     dataIndex: 'name',
-    render: (text) => <a>{text}</a>,
+    render: (text, record) => <div style={{ display: 'flex', gap: '5px' }}><a>{text}</a><img src={record.image} height={'20px'} width={'20px'} /></div>,
   },
   {
     title: 'Units',
-    dataIndex: 'units',
+    dataIndex: 'tokens',
+    render: (tokens) => <b>{Math.round(tokens*10000)/10000}</b>
   },
   {
     title: 'Bought At',
-    dataIndex: 'bought_at',
+    dataIndex: 'date',
+    render: (date) => <b>{`${date}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`}</b>
   },
   {
-    title: 'LTP',
-    dataIndex: 'LTP',
+    title: 'Buy Avg',
+    dataIndex: 'bought_price',
+    render: (text)=><b>{Math.round(Number(text)*100)/100} $</b>
   },
   {
     title: 'Total Value',
-    dataIndex: 'value',
+    dataIndex: 'total_value',
+    render: (total_value) => <b>{total_value} $</b>
   },
   {
     title: 'Total Profit/Loss',
     dataIndex: 'p/l',
+    render: (total_value,record) => <b style={{color:'green'}}>0 %</b>
   },
 ];
 
@@ -55,16 +62,17 @@ const CryptoWallet = () => {
   const [loading, setLoading] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
   const [userCryptos, setUserCryptos] = useState([])
+  const [table, setTable] = useState([])
   const [coinData, setCoindata] = useState({})
   const [amount, setAmount] = useState(100)
   const [tk, setTk] = useState(0)
   const [overBudget, setOverBudget] = useState(false)
-
+  const [currUser,setCurrUser] = useState({})
   const dispatch = useDispatch()
-
+  useEffect(()=>{setCurrUser(user)},[user])
   const handlePayment = () => {
     if (!user.money_added_date && user.money_added_date != '' + (new Date().getDate())) {
-      dispatch(editUser({ ...user, amount: Number(user.amount) + Number(1000), money_added_date: '' + (new Date().getDate()) }))
+      dispatch(editUser({ ...user, amount: Number(user?.amount) + Number(1000), money_added_date: '' + (new Date().getDate()) }))
       const rzp = new window.Razorpay(options);
       rzp.open()
     } else {
@@ -76,39 +84,80 @@ const CryptoWallet = () => {
   }
   const getUserCryptos = async () => {
     try {
-      const resonse = await axios.get(`https://nice-tan-butterfly-sari.cyclic.app/allCrypto/${user._id}`)
-      setUserCryptos(resonse.data)
+      console.log(currUser)
+      const resonse = await axios.get(`https://nice-tan-butterfly-sari.cyclic.app/crypto/allCrypto/${user?._id}`)
+      setTable(resonse.data.cryptos)
     } catch (error) {
       console.log(error)
     }
   }
+  // useEffect(()=>{
+  //   if(userCryptos.length>0){
+  //     console.log('here')
+  //     let data = []
+  //     userCryptos?.map((ele) => {
+  //       const coin = getCdetail(ele.crypto_id)
+  //       .then((d)=>{
+  //         data.push(d.data.coin.price)
+  //       })
+  //     })
+  //     console.log(data)
+  //   }
+  // },[userCryptos])
   // const []
-  const { data } = useGetCryptoDetailsQuery(coinId);
+  const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+  useEffect(()=>{
+    getUserCryptos()
+  },[currUser])
   useEffect(() => {
-    setLoading(true)
-    setTimeout(() => { setLoading(false); setCoindata(data?.data) }, 2000)
+    setCoindata(data?.data)
   }, [data])
   useEffect(() => {
     let price = coinData?.coin?.price
     let ans = (1 / Math.round(price)) * amount
     setTk(Math.round(ans * 10000) / 10000)
   }, [coinData, amount])
+  const [btnLoading, setBtnLoading] = useState(false)
+  const [errorBuy, setErrorBuy] = useState(0)
+  const boughtCrypto = () => {
+    setLoading(true)
+    dispatch(editUser({...user,amount:Number(user?.amount)-Number(amount)}))
+    setTimeout(()=>{
+      setLoading(false)
+    },2000)
+  }
   const buyCrypto = async () => {
-    console.log(coinData)
-    // try {
-    //   const resonse = await axios.post(`https://nice-tan-butterfly-sari.cyclic.app/buy`, {
-    //     name: data.name,
-    //     image: data.iconUrl,
-    //     bought_at: Math.round((data.price + Number.EPSILON) * 100) / 100,
-    //     date: '' + ((new Date()).getDate()),
-    //     tokens: (1 / Math.round(price)) * amount,
-    //     total_value: amount,
-    //     user_id: user._id
-    //   })
-    //   setUserCryptos(resonse.data)
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    if (tk > 0) {
+      setBtnLoading(true)
+      let obj = {
+        crypto_id: coinData.coin.uuid,
+        name: coinData.coin.name,
+        image: coinData.coin.iconUrl,
+        bought_price: Math.round((coinData.coin.price) * 100) / 100,
+        date: '' + ((new Date()).getDate()),
+        tokens: tk,
+        total_value: Number(amount),
+        user_id: user._id
+      }
+      try {
+        const resonse = await axios.post(`https://nice-tan-butterfly-sari.cyclic.app/crypto/buy`, obj)
+        setErrorBuy(2)
+        setBtnLoading(false)
+        boughtCrypto()
+      } catch (error) {
+        console.log(error)
+        setErrorBuy(1)
+        setBtnLoading(false)
+      }
+      setTimeout(() => {
+        setErrorBuy(0)
+      }, 2000)
+    } else {
+      setErrorBuy(3)
+      setTimeout(() => {
+        setErrorBuy(0)
+      }, 2000)
+    }
   }
   const logout = () => {
     setLoading(true)
@@ -118,7 +167,7 @@ const CryptoWallet = () => {
     }, 2000)
   }
   const handleInput = (value) => {
-    if (value < user.amount) setAmount(value)
+    if (value < user?.amount) setAmount(value)
     else {
       setAmount(0)
       setOverBudget(true)
@@ -127,7 +176,7 @@ const CryptoWallet = () => {
       }, 2000)
     }
   }
-  if (loading) return <Loader />
+  if (isFetching || loading) return <Loader />
   return (
     <>
       <div>
@@ -137,7 +186,7 @@ const CryptoWallet = () => {
         <Col span={11} style={{ borderRadius: '1em', color: '#0060bb', textAlign: 'center', border: '2px solid #0060bb', padding: '1em' }}>
           <Title level={2} style={{ textAlign: 'center', color: '#0060bb', fontWeight: 'bold' }}>Add Money</Title>
           <PlusSquareFilled onClick={handlePayment} style={{ fontSize: '3em' }} />
-          <Title level={4} style={{ marginTop: '1em', color: '#0060bb' }}>Available Balance : {millify(user.amount)}</Title>
+          <Title level={4} style={{ marginTop: '1em', color: '#0060bb' }}>Available Balance : {user?.amount ? millify(Number(user?.amount)): 0}</Title>
           {showAlert && <Alert message={"Funds limit over for today!"} type="error" showIcon />}
         </Col>
         <Col span={2}></Col>
@@ -156,14 +205,15 @@ const CryptoWallet = () => {
                 <tr style={{ fontWeight: 'bold' }}>
                   <td>{coinData?.coin?.name || 'Coin'}</td>
                   <td strong>{Math.round(coinData?.coin?.price * 100) / 100}</td>
-                  <td><InputNumber value={amount} onChange={handleInput} style={{ width: '5em' }} /></td>
+                  <td><InputNumber value={Number(amount)} onChange={handleInput} style={{ width: '5em' }} /></td>
                   <td>{tk}</td>
                 </tr>
               </table>
-              <Button type="primary" onClick={buyCrypto} style={{ background: '#0060bb' }}>Buy Now</Button>
-              {
-                overBudget && <Alert message={"Not Enough Balance"} type="error" showIcon />
-              }
+              <Button type="primary" loading={btnLoading} onClick={buyCrypto} style={{ background: '#0060bb' }}>Buy Now</Button>
+              {overBudget && <Alert message={"Not Enough Balance"} type="error" showIcon />}
+              {errorBuy == 1 ? <Alert message={"Try again later"} type="error" showIcon />
+                : errorBuy == 3 ? <Alert message={"Too small lot/amount"} type="error" showIcon />
+                  : errorBuy == 2 ? <Alert message={"Transaction Successfull"} type="success" showIcon /> : ''}
             </div>
           }
         </Col>
@@ -178,7 +228,7 @@ const CryptoWallet = () => {
                 // ...rowSelection,
               }}
               columns={columns}
-              dataSource={userCryptos}
+              dataSource={table}
 
             />
           </div>

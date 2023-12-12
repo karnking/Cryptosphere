@@ -26,7 +26,7 @@ export const loginUser = (user) => async (dispatch) => {
         return;
     }
     try {
-        const curr_user = await axios.post('http://localhost:8080/user/login', user)
+        const curr_user = await axios.post('https://nice-tan-butterfly-sari.cyclic.app/user/login', user)
         if (curr_user.status == 200) dispatch({
             type: LOGIN_USER,
             payload: curr_user.data
@@ -71,7 +71,7 @@ export const signupUser = (user) => async (dispatch) => {
         return;
     }
     try {
-        const curr_user = await axios.post('http://localhost:8080/user/signup', user)
+        const curr_user = await axios.post('https://nice-tan-butterfly-sari.cyclic.app/user/signup', user)
         if (curr_user.status !== 200) dispatch({
             type: IS_ERROR,
             payload: curr_user?.response?.data
@@ -93,9 +93,8 @@ export const editUser = (user) => async (dispatch) => {
     dispatch({
         type: IS_LOADING
     })
-    console.log(user)
     try {
-        const curr_user = await axios.patch(`http://localhost:8080/user/edit/${user._id}`, user)
+        const curr_user = await axios.patch(`https://nice-tan-butterfly-sari.cyclic.app/user/edit/${user._id}`, user)
         if (curr_user.status == 200) dispatch({
             type: EDIT_USER,
             payload: curr_user?.data

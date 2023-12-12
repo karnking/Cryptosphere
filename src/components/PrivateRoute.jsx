@@ -69,7 +69,6 @@ const PrivateRoute = ({ children }) => {
 
     const navigate = useNavigate()
     const state = useSelector(state=>state.user)
-    console.log(state)
     if (!loggedIn) return <Modal
         title={logging ? "Login" : "Signup"}
         open={!loggedIn}
