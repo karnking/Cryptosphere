@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Cryptosphere/static/css/main.d1db5e8f.css",
-    "main.js": "/Cryptosphere/static/js/main.596ff848.js",
+    "main.js": "/Cryptosphere/static/js/main.cc9b65cc.js",
     "static/media/1_HTC1oMKYwC7a8vUBsiplhw.gif": "/Cryptosphere/static/media/1_HTC1oMKYwC7a8vUBsiplhw.3abbe14a2b6e731d7a85.gif",
     "static/media/cryptocurrency.png": "/Cryptosphere/static/media/cryptocurrency.1548aced3f0605895bac.png",
     "index.html": "/Cryptosphere/index.html"
   },
   "entrypoints": [
     "static/css/main.d1db5e8f.css",
-    "static/js/main.596ff848.js"
+    "static/js/main.cc9b65cc.js"
   ]
 }
